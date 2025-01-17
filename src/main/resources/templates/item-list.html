@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Item List</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+<header>
+    <h1>Item Management</h1>
+</header>
+<div class="container">
+    <a href="/items/add">+ Add New Item</a>
+    <form method="get" action="/items/search" style="margin-top: 20px; display: inline;">
+        <input type="text" name="name" placeholder="Search by name" style="width: 80%; padding: 8px;">
+        <button type="submit">Search</button>
+    </form>
+    <form method="get" action="/items" style="margin-top: 20px; display: inline;">
+        <button type="submit" class="button">Clear</button>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.description}"></td>
+            <td th:text="${item.price}"></td>
+            <td>
+                <a th:href="@{/items/edit/{id}(id=${item.id})}">Edit</a> |
+                <a th:href="@{/items/delete/{id}(id=${item.id})}" style="color: red;">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

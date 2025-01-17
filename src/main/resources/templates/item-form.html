@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Item Form</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+<header>
+  <h1>Item Form</h1>
+</header>
+<div class="container">
+  <form th:action="@{/items}" th:object="${item}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" th:field="*{name}" required>
+    </div>
+    <div>
+      <label for="description">Description:</label>
+      <input type="text" id="description" th:field="*{description}" required>
+    </div>
+    <div>
+      <label for="price">Price:</label>
+      <input type="number" id="price" th:field="*{price}" step="0.01" required>
+    </div>
+    <input type="submit" value="Save">
+    <a href="/items" class="button">Back</a>
+  </form>
+</div>
+</body>
+</html>
